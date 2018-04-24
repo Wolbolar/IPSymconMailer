@@ -1,0 +1,11 @@
+{
+    "id": "{76CFE854-477D-9316-224D-94999B59C855}",
+    "name": "HTMLMailer",
+    "type": 3,
+    "vendor": "PHPMailer",
+    "aliases": ["PHPMailer"],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "PHPMailer"
+}

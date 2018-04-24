@@ -1,0 +1,37 @@
+{
+  "translations": {
+    "de": {
+      "HTML E-Mail": "HTML E-Mail",
+      "SMTP Server": "SMTP Server",
+      "SMTP Port": "SMTP Port",
+      "use SSL": "Benutze SSL",
+      "authenticate": "Benutze Authenifizierung",
+      "username": "Benutzername",
+      "password": "Passwort",
+      "standard values for e-mail": "Standard Werte für den E-Mail Versand",
+      "name sender": "Absender-Name",
+      "adress sender": "Absender-Adresse",
+      "recipient": "Empfänger",
+      "name": "Name",
+      "adress": "Adresse",
+      "replyto:": "Rückantwort (reply to):",
+      "CC": "CC",
+      "BCC": "BCC",
+      "Subject": "Betreff",
+      "Body": "HTML Nachricht",
+      "AltBody": "Alternative Nachricht",
+      "attachment name": "Anhang Name",
+      "attachment path": "Anhang Pfad",
+      "Send HTML Email": "HTML Email senden",
+      "Send": "Senden",
+      "Creating instance.": "Die Instanz wird erstellt.",
+      "Device created.": "Instanz ok",
+      "interface closed.": "Interface geschlossen.",
+      "smtp server must not be empty": "SMTP Server darf nicht leer sein",
+      "user name must not be empty": "Benutzername darf nicht leer sein",
+      "password must not be empty": "Passwort darf nicht leer sein",
+      "sender name must not be empty": "Absender Name darf nicht leer sein",
+      "sender adress must not be empty": "Absender Adresse darf nicht leer sein"
+    }
+  }
+}
