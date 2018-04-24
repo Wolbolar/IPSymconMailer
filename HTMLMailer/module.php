@@ -95,7 +95,17 @@ class HTMLMailer extends IPSModule
 		}
 	}
 
-	public function SendHTML_EMail(string $name_recipient = NULL, string $adress_recipient = NULL, string $subject = NULL, string $body = NULL, string $altbody = NULL)
+	public function SendHTML_EMailEx(string $name_recipient, string $adress_recipient, string $subject, string $body, string $altbody)
+	{
+		$this->HTML_EMail($subject, $body, $altbody, $name_recipient, $adress_recipient);
+	}
+
+	public function SendHTML_EMail()
+	{
+		$this->HTML_EMail($subject = NULL, $body = NULL, $altbody = NULL, $name_recipient = NULL, $adress_recipient = NULL);
+	}
+
+	protected function HTML_EMail(string $subject = NULL, string $body = NULL, string $altbody = NULL, string $name_recipient = NULL, string $adress_recipient = NULL)
 	{
 		$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 		try {

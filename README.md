@@ -68,10 +68,10 @@ Sendet HTML Emails
 ```php
 PHPMailer_SendHTML_EMail(int $InstanceID)
 ```
-Sendet eine HTML Email mit der in der Instanz hinterlegeten Werten
+Sendet eine HTML Email mit der in der Instanz hinterlegten Werten
 
 ```php
-PHPMailer_SendHTML_EMail(int $InstanceID, string $name_recipient, string $adress_recipient, string $subject, string $body, string $altbody)
+PHPMailer_SendHTML_EMailEx(int $InstanceID, string $name_recipient, string $adress_recipient, string $subject, string $body, string $altbody)
 ```
 Sendet eine HTML Email
 
