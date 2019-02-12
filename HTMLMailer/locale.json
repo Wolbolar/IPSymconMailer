@@ -2,6 +2,9 @@
   "translations": {
     "de": {
       "HTML E-Mail": "HTML E-Mail",
+      "PHP Mailer Github Documentation": "PHP Mailer Github Dokumentation",
+      "PHP Mailer License": "PHP Mailer Lizenz",
+      "PHP Mailer License:": "PHP Mailer Lizenz:",
       "SMTP Server": "SMTP Server",
       "SMTP Port": "SMTP Port",
       "use SSL": "Benutze SSL",

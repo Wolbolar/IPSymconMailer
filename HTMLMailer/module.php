@@ -274,6 +274,24 @@ class HTMLMailer extends IPSModule
 				'label' => 'HTML E-Mail'
 			],
 			[
+				'type' => 'Label',
+				'label' => 'PHPMailer (https://github.com/PHPMailer/PHPMailer)'
+			],
+			[
+				'type' => 'Button',
+				'label' => 'PHP Mailer Github Documentation',
+				'onClick' => 'echo "https://github.com/PHPMailer/PHPMailer";'
+			],
+			[
+				'type' => 'Label',
+				'label' => 'PHP Mailer License:'
+			],
+			[
+				'type' => 'Button',
+				'label' => 'PHP Mailer License',
+				'onClick' => 'echo "https://github.com/PHPMailer/PHPMailer/blob/master/LICENSE";'
+			],
+			[
 				'name' => 'SMTP',
 				'type' => 'ValidationTextBox',
 				'caption' => 'SMTP Server'
