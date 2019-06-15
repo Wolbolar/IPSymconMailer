@@ -18,7 +18,7 @@
  * FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-namespace Fonzo\PHPMailer;
+namespace PHPMailer\PHPMailer;
 
 /**
  * PHPMailer exception handler.
