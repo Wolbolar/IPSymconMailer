@@ -8,11 +8,11 @@ require_once(__ROOT__ . '/libs/ips.constants.php');
 
 require_once(__DIR__ . "/../bootstrap.php");
 
-// use Fonzo\IPS\IPSVarType;
-use Fonzo\PHPMailer\Exception;
-use Fonzo\PHPMailer\PHPMailer;
-// use Fonzo\PHPMailer\POP3;
-// use Fonzo\PHPMailer\SMTP;
+
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\POP3;
+// use PHPMailer\PHPMailer\SMTP;
 
 class HTMLMailer extends IPSModule
 {
