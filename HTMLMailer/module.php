@@ -1,4 +1,4 @@
-<?
+<?php
 
 // set base dir
 define('__ROOT__', dirname(dirname(__FILE__)));
