@@ -12,7 +12,7 @@ require_once(__DIR__ . "/../bootstrap.php");
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 // use PHPMailer\PHPMailer\POP3;
-// use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\SMTP;
 
 class HTMLMailer extends IPSModule
 {
@@ -91,7 +91,7 @@ class HTMLMailer extends IPSModule
 		if($smtp != "" && $username != "" && $password != "" && $name_sender != "" && $adress_sender != "")
 		{
 			// Status Aktiv
-			$this->SetStatus(102);
+			$this->SetStatus(IS_ACTIVE);
 		}
 	}
 
@@ -109,17 +109,20 @@ class HTMLMailer extends IPSModule
 	{
 		$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 		try {
-			//Server settings
+		    //Server settings
 			$mail->SMTPDebug = $this->ReadPropertyInteger("SMTPDebug");                                 // Enable verbose debug output
+            //Tell PHPMailer to use SMTP
 			$mail->isSMTP();                                      // Set mailer to use SMTP
 			$mail->Host = $this->ReadPropertyString("SMTP");  // Specify main and backup SMTP servers
+
 			$mail->SMTPAuth = $this->ReadPropertyBoolean("authenticate");                               // Enable SMTP authentication
 			$mail->Username = $this->ReadPropertyString("username");                 // SMTP username
 			$mail->Password = $this->ReadPropertyString("password");                           // SMTP password
 			$ssl = $this->ReadPropertyBoolean("SSL");
 			if($ssl)
 			{
-				$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                //Set the encryption mechanism to use - STARTTLS or SMTPS
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption, `ssl` also accepted
 			}
 
 			$mail->Port = $this->ReadPropertyInteger("SMTP_Port");                                    // TCP port to connect to
@@ -170,6 +173,10 @@ class HTMLMailer extends IPSModule
 			else{
 				$mail->Subject = $subject;
 			}
+            //Read an HTML message body from an external file, convert referenced images to embedded,
+            //convert HTML into a basic plain-text alternative body
+            // $mail->msgHTML(file_get_contents('contents.html'), __DIR__);
+
 			if(empty($body))
 			{
 				$body_scriptid = $this->ReadPropertyInteger("Body");
@@ -463,17 +470,17 @@ class HTMLMailer extends IPSModule
 	{
 		$form = [
 			[
-				'code' => 101,
+				'code' => IS_CREATING,
 				'icon' => 'inactive',
 				'caption' => 'Creating instance.'
 			],
 			[
-				'code' => 102,
+				'code' => IS_ACTIVE,
 				'icon' => 'active',
 				'caption' => 'Device created.'
 			],
 			[
-				'code' => 104,
+				'code' => IS_INACTIVE,
 				'icon' => 'inactive',
 				'caption' => 'interface closed.'
 			],
@@ -505,37 +512,6 @@ class HTMLMailer extends IPSModule
 		];
 
 		return $form;
-	}
-
-
-	/**
-	 * gets current IP-Symcon version
-	 * @return float|int
-	 */
-	protected function GetIPSVersion()
-	{
-		$ipsversion = floatval(IPS_GetKernelVersion());
-		if ($ipsversion < 4.1) // 4.0
-		{
-			$ipsversion = 0;
-		} elseif ($ipsversion >= 4.1 && $ipsversion < 4.2) // 4.1
-		{
-			$ipsversion = 1;
-		} elseif ($ipsversion >= 4.2 && $ipsversion < 4.3) // 4.2
-		{
-			$ipsversion = 2;
-		} elseif ($ipsversion >= 4.3 && $ipsversion < 4.4) // 4.3
-		{
-			$ipsversion = 3;
-		} elseif ($ipsversion >= 4.4 && $ipsversion < 5) // 4.4
-		{
-			$ipsversion = 4;
-		} else   // 5
-		{
-			$ipsversion = 5;
-		}
-
-		return $ipsversion;
 	}
 
 	//Add this Polyfill for IP-Symcon 4.4 and older
