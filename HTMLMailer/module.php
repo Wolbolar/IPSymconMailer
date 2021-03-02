@@ -28,6 +28,7 @@ class HTMLMailer extends IPSModule
 		$this->RegisterPropertyString("SMTP", "");
 		$this->RegisterPropertyInteger("SMTP_Port", 587);
 		$this->RegisterPropertyInteger("SMTPDebug", 2);
+        $this->RegisterPropertyBoolean("TLS", false);
 		$this->RegisterPropertyBoolean("SSL", false);
 		$this->RegisterPropertyBoolean("authenticate", false);
 		$this->RegisterPropertyString("username", "");
@@ -118,12 +119,17 @@ class HTMLMailer extends IPSModule
 			$mail->SMTPAuth = $this->ReadPropertyBoolean("authenticate");                               // Enable SMTP authentication
 			$mail->Username = $this->ReadPropertyString("username");                 // SMTP username
 			$mail->Password = $this->ReadPropertyString("password");                           // SMTP password
-			$ssl = $this->ReadPropertyBoolean("SSL");
+            //Set the encryption mechanism to use
+            $ssl = $this->ReadPropertyBoolean("SSL");
 			if($ssl)
 			{
-                //Set the encryption mechanism to use - STARTTLS or SMTPS
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption, `ssl` also accepted
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Enable `ssl`
 			}
+            $tls = $this->ReadPropertyBoolean("TLS");
+            if($tls)
+            {
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
+            }
 
 			$mail->Port = $this->ReadPropertyInteger("SMTP_Port");                                    // TCP port to connect to
 
@@ -308,6 +314,11 @@ class HTMLMailer extends IPSModule
 				'type' => 'NumberSpinner',
 				'caption' => 'SMTP Port'
 			],
+            [
+                'name' => 'TLS',
+                'type' => 'CheckBox',
+                'caption' => 'use TLS'
+            ],
 			[
 				'name' => 'SSL',
 				'type' => 'CheckBox',
