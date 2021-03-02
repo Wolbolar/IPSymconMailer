@@ -8,6 +8,7 @@
       "SMTP Server": "SMTP Server",
       "SMTP Port": "SMTP Port",
       "use SSL": "Benutze SSL",
+      "use TLS": "Benutze TLS",
       "authenticate": "Benutze Authenifizierung",
       "username": "Benutzername",
       "password": "Passwort",
