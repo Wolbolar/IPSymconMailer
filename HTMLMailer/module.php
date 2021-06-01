@@ -186,8 +186,11 @@ class HTMLMailer extends IPSModule
 			if(empty($body))
 			{
 				$body_scriptid = $this->ReadPropertyInteger("Body");
-				// 'This is the HTML message body <b>in bold!</b>'
-				$mail->Body    = IPS_GetScriptContent($body_scriptid);
+				if($body_scriptid != 0)
+                {
+                    // 'This is the HTML message body <b>in bold!</b>'
+                    $mail->Body    = IPS_GetScriptContent($body_scriptid);
+                }
 			}
 			else{
 				// 'This is the HTML message body <b>in bold!</b>'
@@ -196,8 +199,11 @@ class HTMLMailer extends IPSModule
 			if(empty($altbody))
 			{
 				$altbody_scriptid = $this->ReadPropertyInteger("AltBody");
-				// 'This is the body in plain text for non-HTML mail clients'
-				$mail->AltBody = IPS_GetScriptContent($altbody_scriptid);
+                if($altbody_scriptid != 0)
+                {
+                    // 'This is the body in plain text for non-HTML mail clients'
+                    $mail->AltBody = IPS_GetScriptContent($altbody_scriptid);
+                }
 			}
 			else{
 				// 'This is the body in plain text for non-HTML mail clients'
