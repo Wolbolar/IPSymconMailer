@@ -96,17 +96,22 @@ class HTMLMailer extends IPSModule
 		}
 	}
 
-	public function SendHTML_EMailEx(string $name_recipient, string $adress_recipient, string $subject, string $body, string $altbody)
+	public function SendHTML_EMailEx(string $name_recipient, string $adress_recipient, string $subject, string $body, string $altbody, string $charset, string $encoding)
 	{
-		$this->HTML_EMail($subject, $body, $altbody, $name_recipient, $adress_recipient);
+		$this->HTML_EMail($subject, $body, $altbody, $name_recipient, $adress_recipient, $charset, $encoding);
 	}
 
 	public function SendHTML_EMail()
 	{
-		$this->HTML_EMail($subject = NULL, $body = NULL, $altbody = NULL, $name_recipient = NULL, $adress_recipient = NULL);
+		$this->HTML_EMail($subject = NULL, $body = NULL, $altbody = NULL, $name_recipient = NULL, $adress_recipient = NULL, $charset = "UTF-8",  $encoding = "base64");
 	}
 
-	protected function HTML_EMail(string $subject = NULL, string $body = NULL, string $altbody = NULL, string $name_recipient = NULL, string $adress_recipient = NULL)
+    /*
+     * $mail->CharSet   = 'UTF-8';
+$mail->Encoding  = 'base64';
+     */
+
+	protected function HTML_EMail(string $subject = NULL, string $body = NULL, string $altbody = NULL, string $name_recipient = NULL, string $adress_recipient = NULL, string $charset = NULL, string $encoding = NULL)
 	{
 		$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 		try {
@@ -209,6 +214,20 @@ class HTMLMailer extends IPSModule
 				// 'This is the body in plain text for non-HTML mail clients'
 				$mail->AltBody = $altbody;
 			}
+            if(empty($charset))
+            {
+                $mail->CharSet   = 'UTF-8';
+            }
+            else{
+                $mail->CharSet   = $charset;
+            }
+            if(empty($encoding))
+            {
+                $mail->Encoding  = 'base64';
+            }
+            else{
+                $mail->Encoding  = $encoding;
+            }
 
 			$mail->send();
 			$this->SendDebug("HTMLEmail", "Message has been sent", 1);
